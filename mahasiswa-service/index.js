@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const bukuRouter = require('./bukuRouter');
+const bukuRouter = require('./mahasiswaRouter');
 
 const app = express();
 
@@ -11,11 +11,11 @@ app.use(bodyParser.json());
 // Menggunakan middleware cors untuk menangani CORS
 app.use(cors());
 
-// Menggunakan router buku
-app.use('/buku-service', bukuRouter);
+// Menggunakan router mahasisw
+app.use('/mahasiswa-service', bukuRouter);
 
 const PORT = 4000;
 
 app.listen(PORT, () => {
-    console.log(`Buku service is running on port ${PORT}`);
+    console.log(`Mahasiswa service is running on port ${PORT}`);
 });
