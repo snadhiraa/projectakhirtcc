@@ -14,7 +14,7 @@ app.use(cors());
 // Menggunakan router mahasisw
 app.use('/mahasiswa-service', bukuRouter);
 
-const PORT = 4000;
+const PORT = 8080;
 
 app.listen(PORT, () => {
     console.log(`Mahasiswa service is running on port ${PORT}`);
