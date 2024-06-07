@@ -14,7 +14,7 @@ app.use(cors());
 // Menggunakan router buku
 app.use('/buku-service', bukuRouter);
 
-const PORT = 4000;
+const PORT = 8080;
 
 app.listen(PORT, () => {
     console.log(`Buku service is running on port ${PORT}`);
