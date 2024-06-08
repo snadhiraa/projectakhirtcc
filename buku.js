@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function loadBukuData() {
-    fetch('http://localhost:4000/buku-service/buku')
+    fetch('https://buku-dot-a-07-414902.et.r.appspot.com/buku-service/buku')
         .then(response => response.json())
         .then(data => {
             const tbody = document.querySelector('#bukuTable tbody');
@@ -46,7 +46,7 @@ function loadBukuData() {
 }
 
 function loadBukuDataForEdit(kode_buku) {
-    fetch(`http://localhost:4000/buku-service/buku/${kode_buku}`)
+    fetch(`https://buku-dot-a-07-414902.et.r.appspot.com/buku-service/buku/${kode_buku}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('kode_buku').value = data.kode_buku;
@@ -60,7 +60,7 @@ function addBuku() {
     const judul = document.getElementById('judul').value;
     const stok = document.getElementById('stok').value;
 
-    fetch('http://localhost:4000/buku-service/buku', {
+    fetch('https://buku-dot-a-07-414902.et.r.appspot.com/buku-service/buku', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ kode_buku, judul, stok })
@@ -83,7 +83,7 @@ function updateBuku() {
     const judul = document.getElementById('judul').value;
     const stok = document.getElementById('stok').value;
 
-    fetch(`http://localhost:4000/buku-service/buku/${kode_buku}`, {
+    fetch(`https://buku-dot-a-07-414902.et.r.appspot.com/buku-service/buku/${kode_buku}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ judul, stok })
@@ -98,7 +98,7 @@ function updateBuku() {
 }
 
 function deleteBuku(kode_buku) {
-    fetch(`http://localhost:4000/buku-service/buku/${kode_buku}`, {
+    fetch(`https://buku-dot-a-07-414902.et.r.appspot.com/buku-service/buku/${kode_buku}`, {
         method: 'DELETE'
     }).then(() => {
         loadBukuData();
@@ -114,18 +114,18 @@ function pinjamBuku() {
     const nim = document.getElementById('nim').value;
     const nama = document.getElementById('nama').value;
 
-    fetch(`http://localhost:4000/buku-service/buku/${kode_buku}`)
+    fetch(`https://buku-dot-a-07-414902.et.r.appspot.com/buku-service/buku/${kode_buku}`)
         .then(response => response.json())
         .then(buku => {
             if (buku.stok > 0) {
                 // Update stok buku
-                fetch(`http://localhost:4000/buku-service/buku/${kode_buku}`, {
+                fetch(`https://buku-dot-a-07-414902.et.r.appspot.com/buku-service/buku/${kode_buku}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ judul: buku.judul, stok: buku.stok - 1 })
                 }).then(() => {
                     // Tambah data mahasiswa
-                    fetch('http://localhost:4000/mahasiswa-service/mahasiswa', {
+                    fetch('https://mahasiswa-dot-a-07-414902.et.r.appspot.com/mahasiswa-service/mahasiswa', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ nim, nama, kode_buku })

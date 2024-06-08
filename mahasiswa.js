@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function loadMahasiswaData() {
-    fetch('http://localhost:4000/mahasiswa-service/mahasiswa')
+    fetch('https://mahasiswa-dot-a-07-414902.et.r.appspot.com/mahasiswa-service/mahasiswa')
         .then(response => response.json())
         .then(data => {
             const tbody = document.querySelector('#mahasiswaTable tbody');
@@ -43,11 +43,11 @@ function addMahasiswa() {
     const nama = document.getElementById('nama').value;
     const kode_buku = document.getElementById('kode_buku').value;
 
-    fetch(`http://localhost:4000/buku-service/buku/${kode_buku}`)
+    fetch(`https://mahasiswa-dot-a-07-414902.et.r.appspot.com/mahasiswa-service/mahasiswa/${kode_buku}`)
         .then(response => response.json())
         .then(buku => {
             if (buku.stok > 0) {
-                fetch('http://localhost:4000/mahasiswa-service/mahasiswa', {
+                fetch('https://mahasiswa-dot-a-07-414902.et.r.appspot.com/mahasiswa-service/mahasiswa', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ nim, nama, kode_buku })
@@ -79,7 +79,7 @@ function updateMahasiswa() {
     const nama = document.getElementById('nama').value;
     const kode_buku = document.getElementById('kode_buku').value;
 
-    fetch(`http://localhost:4000/mahasiswa-service/mahasiswa/${nim}`, {
+    fetch(`https://mahasiswa-dot-a-07-414902.et.r.appspot.com/mahasiswa-service/mahasiswa/${nim}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nama, kode_buku })
@@ -93,7 +93,7 @@ function updateMahasiswa() {
 }
 
 function deleteMahasiswa(nim) {
-    fetch(`http://localhost:4000/mahasiswa-service/mahasiswa/${nim}`, {
+    fetch(`https://mahasiswa-dot-a-07-414902.et.r.appspot.com/mahasiswa-service/mahasiswa/${nim}`, {
         method: 'DELETE'
     }).then(() => {
         loadMahasiswaData();
